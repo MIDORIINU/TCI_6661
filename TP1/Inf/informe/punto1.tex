@@ -2,7 +2,7 @@
 \subsection{Punto \textbf{1}}
 
 \begin{itemize}
-\item \emph{\textbf{Estimar con cálculo manual el retardo del inversor CMOS cuando está cargado por otro inversor idéntico. Considerar los efectos de canal corto.}}
+\item \emph{\textbf{Estimar con cálculo manual el retardo del inversor \textbf{CMOS} cuando está cargado por otro inversor idéntico. Considerar los efectos de canal corto.}}
 \end{itemize}
 
 
@@ -45,7 +45,7 @@ En el cuadro~\tableref{table:device_parameters}, se pueden ver resumidos los par
     >{\columncolor{white} \centering\arraybackslash}m{0.104\textwidth} 
      |     
     }
-    \rowcolor{HeadersColor} \cellcolor{white} \thead{}  & \thead{$t_{ox}$} & \thead{$V_{tho}$} & \thead{$I_{D_{sat}}$} & \thead{$\mu \cdot C_{ox}$} & \thead{$X_{j}$} & \thead{$\gamma$} & \thead{$C_{ov}$} & \thead{$C_{j}$} & \thead{$C_{j_{sw}}$} \\  
+    \rowcolor{HeadersColor} \cellcolor{white} \thead{}  & \thead{$t_{ox}$} & \thead{$V_{th}$} & \thead{$I_{D_{sat}}$} & \thead{$\mu \cdot C_{ox}$} & \thead{$X_{j}$} & \thead{$\gamma$} & \thead{$C_{ov}$} & \thead{$C_{j}$} & \thead{$C_{j_{sw}}$} \\  
     \hhline{|-|-|-|-|-|-|-|-|-|-|}
     \rowcolor{gray!20} \cellcolor{gray!40} \textbf{NMOS} & $2.05 \si[per-mode=symbol]{\micro\meter}$ & $397 \si[per-mode=symbol]{\milli\volt}$ & $869 \si[per-mode=symbol]{\micro\ampere\per\micro\meter}$ & $428 \si[per-mode=symbol]{\micro\ampere\per\volt\squared}$ & $415 \si[per-mode=symbol]{\micro\meter}$ & $0.4 \si[per-mode=symbol]{\volt\tothe{0.5}}$ & $0.26 \si[per-mode=symbol]{\femto\farad\per\micro\meter}$ &  $0.5 \si[per-mode=symbol]{\femto\farad\per\micro\meter\squared}$ & $0.5 \si[per-mode=symbol]{\femto\farad\per\micro\meter}$ \\
     \hhline{|-|-|-|-|-|-|-|-|-|-|}
@@ -65,7 +65,7 @@ En la figura~\figref{fig:fig_inverter_loaded_with_inverter} puede verse el circu
 \begin{figure}[H] %htb
 \begin{center}
 \includegraphics[width=0.3 \textwidth, angle=0]{./img/point1/inverter_loaded_with_inverter}
-\caption{\label{fig:fig_inverter_loaded_with_inverter}\footnotesize{Inversor CMOS cargado con un inversor idéntico.}}
+\caption{\label{fig:fig_inverter_loaded_with_inverter}\footnotesize{Inversor \textbf{CMOS} cargado con un inversor idéntico.}}
 \end{center}
 \end{figure}
 
@@ -74,7 +74,7 @@ En la figura~\figref{fig:fig_inverter_loaded_with_inverter} puede verse el circu
 \begin{figure}[H] %htb
 \begin{center}
 \includegraphics[width=0.3 \textwidth, angle=0]{./img/point1/inverter_loaded_with_inverter_capacitances}
-\caption{\label{fig:fig_inverter_loaded_with_inverter_capacitances}\footnotesize{Inversor CMOS cargado con un inversor idéntico (capacidades tenidas en cuenta).}}
+\caption{\label{fig:fig_inverter_loaded_with_inverter_capacitances}\footnotesize{Inversor \textbf{CMOS} cargado con un inversor idéntico (capacidades tenidas en cuenta).}}
 \end{center}
 \end{figure}
 
@@ -299,7 +299,67 @@ C_{L} = C_{out_{inv_{1}}} + C_{L_{inv_{2}}}
 \end{equation*}
 
 
+
+
+
 \subsubsection{Determinación la resistencia de carga equivalente $R_{L}$}
+
+
+Las resistencias equivalentes para cada estado del inversor, se muestran en la figura~\figref{fig:fig_inverter_equivalent_resistances}.
+
+
+
+
+\begin{figure}[H] %htb
+\begin{center}
+\includegraphics[width=0.7 \textwidth, angle=0]{./img/point1/resistance_equivalent}
+\caption{\label{fig:fig_inverter_equivalent_resistances}\footnotesize{Resistencias equivalentes en cada estado del inversor \textbf{CMOS}.}}
+\end{center}
+\end{figure}
+
+
+
+En cada estado, el transistor que conduce, se encuentra en la zona óhmica de operación, el valor de estas resistencias es represetando por $R_{P}$ y $R_{N}$. \\
+
+
+
+Para obtener el valor de esta resistencia equivalente, se utiliza la expresión:
+
+
+\begin{equation}
+R_{eq} = \frac{3}{4} \cdot \frac{V_{DD}}{I_{D_{sat}}} \cdot \left( 1 - \frac{7}{9} \cdot \lambda \cdot V_{DD} \right)
+\label{eq:eq_r_eq}
+\end{equation} \\
+
+
+
+La modulación del canal se produce cuando el transistor trabaja en la zona de saturación y en el canal, en la difusión del drenaje, se produce el efecto de  estrangulamiento del canal, como se muestra en la figura~\figref{fig:fig_channel_strangulation}.
+
+
+
+\begin{figure}[H] %htb
+\begin{center}
+\includegraphics[width=0.7 \textwidth, angle=0]{./img/point1/channel_strangulation}
+\caption{\label{fig:fig_channel_strangulation}\footnotesize{Estrangulación del canal.}}
+\end{center}
+\end{figure}
+
+
+En la zona óhmica, no se tiene en cuenta el efecto de modulación del canal, esto es $\lambda = 0$, con lo que la expresión~\eqref{eq:eq_r_eq}, se reduce a:
+
+
+\begin{equation}
+R_{eq} = \frac{3}{4} \cdot \frac{V_{DD}}{I_{D_{sat}}}
+\label{eq:eq_r_eq_red}
+\end{equation} \\
+
+
+
+
+
+
+
+
 
 
 
