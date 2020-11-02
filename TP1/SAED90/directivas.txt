@@ -1,0 +1,7 @@
+.MEASURE TRAN tdlay TRIG V(1) VAL = 2.5 TD = 10n RISE = 2
+
+
+
+
+
+.MEAS t_rise TRIG v(out) VAL=0.12 RISE=1 TARG v(out) VAL=1.08 RISE=1
