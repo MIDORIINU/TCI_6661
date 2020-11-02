@@ -247,12 +247,12 @@ Para las capacidades $C_{GD_{i}}$, que son las capacidades de overlap, tengo:
 Para las capacidades $C_{G_{i}}$, tengo:
 
 \begin{equation*}
-\boxed{ C_{G_{3}} = C_{G_{P}} = C_{ox} \cdot W_{P} \cdot L_{s_{P}} = 3.2 \si[per-mode=symbol]{\femto\farad\per\micro\meter\squared} \cdot 1.84 \si[per-mode=symbol]{\micro\meter} \cdot 1.3 \si[per-mode=symbol]{\micro\meter} = 7.6544 \si[per-mode=symbol]{\femto\farad} }
+\boxed{ C_{G_{3}} = C_{G_{P}} = C_{ox_{P}} \cdot W_{P} \cdot L_{s_{P}} = 2.7 \si[per-mode=symbol]{\femto\farad\per\micro\meter\squared} \cdot 1.84 \si[per-mode=symbol]{\micro\meter} \cdot 1.3 \si[per-mode=symbol]{\micro\meter} = 6.4584 \si[per-mode=symbol]{\femto\farad} }
 \end{equation*}
 
 
 \begin{equation*}
-\boxed{ C_{G_{4}} = C_{G_{N}} = C_{ox} \cdot W_{N} \cdot L_{s_{N}} = 3.2 \si[per-mode=symbol]{\femto\farad\per\micro\meter\squared} \cdot 0.92 \si[per-mode=symbol]{\micro\meter} \cdot 1.3 \si[per-mode=symbol]{\micro\meter} = 3.8272 \si[per-mode=symbol]{\femto\farad} }
+\boxed{ C_{G_{4}} = C_{G_{N}} = C_{ox_{N}} \cdot W_{N} \cdot L_{s_{N}} = 3.2 \si[per-mode=symbol]{\femto\farad\per\micro\meter\squared} \cdot 0.92 \si[per-mode=symbol]{\micro\meter} \cdot 1.3 \si[per-mode=symbol]{\micro\meter} = 3.8272 \si[per-mode=symbol]{\femto\farad} }
 \end{equation*}
 
 
@@ -281,7 +281,7 @@ Se obtiene finalmente:
 
 
 \begin{equation*}
-\boxed{ C_{L_{inv_{2}}} =  \left( 2 \cdot 0.24 \si[per-mode=symbol]{\femto\farad} + 0.2392 \si[per-mode=symbol]{\femto\farad} + 3.8272 \si[per-mode=symbol]{\femto\farad} \right) + \left( 2 \cdot 0.47 \si[per-mode=symbol]{\femto\farad} + 0.4784 \si[per-mode=symbol]{\femto\farad} + 7.6544 \si[per-mode=symbol]{\femto\farad} \right) = 13.6192 \si[per-mode=symbol]{\femto\farad} }
+\boxed{ C_{L_{inv_{2}}} =  \left( 2 \cdot 0.24 \si[per-mode=symbol]{\femto\farad} + 0.2392 \si[per-mode=symbol]{\femto\farad} + 3.8272 \si[per-mode=symbol]{\femto\farad} \right) + \left( 2 \cdot 0.47 \si[per-mode=symbol]{\femto\farad} + 0.4784 \si[per-mode=symbol]{\femto\farad} + 6.4584 \si[per-mode=symbol]{\femto\farad} \right) = 12.4232 \si[per-mode=symbol]{\femto\farad} }
 \end{equation*}
 
 
@@ -295,7 +295,7 @@ C_{L} = C_{out_{inv_{1}}} + C_{L_{inv_{2}}}
 
 
 \begin{equation*}
-\boxed{  C_{L} = 3.8292 \si[per-mode=symbol]{\femto\farad} + 13.6192 \si[per-mode=symbol]{\femto\farad} = 17.4484 \si[per-mode=symbol]{\femto\farad} }
+\boxed{  C_{L} = 3.8292 \si[per-mode=symbol]{\femto\farad} + 12.4232 \si[per-mode=symbol]{\femto\farad} = 16.2524 \si[per-mode=symbol]{\femto\farad} }
 \end{equation*}
 
 
@@ -354,15 +354,96 @@ R_{eq} = \frac{3}{4} \cdot \frac{V_{DD}}{I_{D_{sat}}}
 \end{equation} \\
 
 
+Para la $I_{D_{sat}}$, tenemos, en forma genérica para ambos dispositivos:
+
+\begin{equation}
+I_{D_{sat}} = \mu \cdot C_{ox} \cdot \frac{W}{L} \cdot \left[ \left( V_{DD} - V_{th} \right) \cdot V_{D_{sat}} - \frac{1}{2} \cdot V_{D_{sat}}^2 \right]
+\end{equation} \\
+
+
+$W_{N}$, $W_{P}$, $\mu_{N} \cdot C_{ox_{N}}$, $\mu_{P} \cdot C_{ox_{P}}$, $V_{DD}$, $V_{th_{N}}$, $V_{th_{P}}$ son datos para los dispositivos. $L = L_{MIN} = 0.1 \si[per-mode=symbol]{\micro\meter}$ y $V_{D_{sat}}$ se obtiene como:
+
+\begin{equation}
+V_{D_{sat}} = L_{channel} \cdot E_{crit}
+\end{equation} \\
+
+
+El campo eléctrico crítico se da cuando, este alcanza el valor en donde la velocidad de los portadores ya no aumenta, saturando. Este fenómeno se ilustra en la figura~\figref{fig:fig_carriers_speed_saturation}, donde se puede observar la velocidad de los electrones en función del campo eléctrico.
+
+
+\begin{figure}[H] %htb
+\begin{center}
+\includegraphics[width=0.7 \textwidth, angle=0]{./img/point1/velocity_saturation}
+\caption{\label{fig:fig_carriers_speed_saturation}\footnotesize{Velocidad de los electrones en función del campo eléctrico.}}
+\end{center}
+\end{figure}
+
+Se observa como la velocidad de los electrones es constante a partir de un campo eléctrico de $1.5 \si[per-mode=symbol]{\volt\per\micro\meter}$, siendo este el valor de $E_{crit}$.
+
+Tenemos entonces para un $L_{MIN} = 0.1 \si[per-mode=symbol]{\micro\meter}$:
+
+
+\begin{equation*}
+\boxed{ V_{D_{sat}} = L_{channel} \cdot E_{crit} = 0.1 \si[per-mode=symbol]{micro\meter} \cdot 1.5 \si[per-mode=symbol]{\volt\per\micro\meter} = 0.15 \si[per-mode=symbol]{\volt} }
+\end{equation*} \\
+
+Luego obtenemos:
+
+\begin{equation*}
+\boxed{ I_{D_{sat_{N}}} = 0.474 \si[per-mode=symbol]{\milli\ampere} }
+\end{equation*}
+
+
+\begin{equation*}
+\boxed{ I_{D_{sat_{P}}} = 0.316 \si[per-mode=symbol]{\milli\ampere} }
+\end{equation*}
+
+
+De donde obtenemos:
+
+\begin{equation*}
+\boxed{ R_{N} = \frac{3}{4} \cdot \frac{1.2 \si[per-mode=symbol]{\volt} }{0.474 \si[per-mode=symbol]{\milli\ampere}} = 1.8987 \si[per-mode=symbol]{\kilo\ohm} }
+\end{equation*}
+
+
+\begin{equation*}
+\boxed{ R_{P} = \frac{3}{4} \cdot \frac{1.2 \si[per-mode=symbol]{\volt} }{0.316 \si[per-mode=symbol]{\milli\ampere}} = 2.8481 \si[per-mode=symbol]{\kilo\ohm} }
+\end{equation*}
 
 
 
+\subsubsection{Cálculo del tiempo de retardo}
+
+
+El tiempo de delay para el inversor se cácula como:
+
+\begin{equation}
+T_{delay} = \frac{T_{delay_{HL}} + T_{delay_{LH}}}{2}
+\end{equation}
+
+
+Siendo $T_{delay_{HL}}$ y $T_{delay_{LH}}$ los tiempos de retardo para las transiciones de estado alto a bajo y bajo a alto respectivamente en la salida del inversor.
+
+
+Cada uno de estos delays se cálcula como se dijo utilizando un modelo de carga o descarga de un circuito RC. Tenemos entonces:
+
+
+\begin{equation*}
+\boxed{ T_{delay_{HL}} = 0.69 \cdot R_{N} \cdot C_{L} = 0.69 \cdot 1.8987 \si[per-mode=symbol]{\kilo\ohm} \cdot 16.2524 \si[per-mode=symbol]{\femto\farad} = 21.2923 \si[per-mode=symbol]{\pico\second} }
+\end{equation*}
+
+
+\begin{equation*}
+\boxed{ T_{delay_{LH}} = 0.69 \cdot R_{P} \cdot C_{L} = 0.69 \cdot 2.8481 \si[per-mode=symbol]{\kilo\ohm} \cdot 16.2524 \si[per-mode=symbol]{\femto\farad} = 31.9390 \si[per-mode=symbol]{\pico\second} }
+\end{equation*}
+
+
+Finalmente entonces:
 
 
 
-
-
-
-
+\begin{equation*}
+\mathcolorbox{EQColor}{ T_{delay} = 26.6157 \si[per-mode=symbol]{\pico\second} }
+\end{equation*}
 
 
